@@ -12,7 +12,7 @@ import java.security.SecureRandom;
 @AllArgsConstructor
 public class HashService {
 
-    private static final int MAX_HASH_COUNT = 2000;
+    private static final int MAX_HASH_COUNT = 200;
 
     private final EncodeService encodeService;
 
