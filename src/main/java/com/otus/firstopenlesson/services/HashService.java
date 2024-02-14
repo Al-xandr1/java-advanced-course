@@ -1,17 +1,20 @@
 package com.otus.firstopenlesson.services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Base64;
 
 @Service
+@AllArgsConstructor
 public class HashService {
 
     private static final int MAX_HASH_COUNT = 2000;
+
+    private final EncodeService encodeService;
 
     public String hash(String input) {
         String result = input;
@@ -38,8 +41,7 @@ public class HashService {
 
         byte[] hashedPassword = md.digest(input.getBytes(StandardCharsets.UTF_8));
 
-        byte[] encode = Base64.getEncoder().encode(hashedPassword);
-
+        byte[] encode = encodeService.encode(hashedPassword);
         return new String(encode);
     }
 }
